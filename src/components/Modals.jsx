@@ -4,6 +4,8 @@ import logo from "../assets/images/logo-transparent.png";
 import { useFormik } from "formik";
 import Modal from "react-bootstrap/Modal";
 import { basicSchema } from "../Formik/formikSchema";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Modals = ({ show, setShow, change }) => {
   const [signup, setSignup] = useState(false);
 
@@ -26,6 +28,7 @@ const Modals = ({ show, setShow, change }) => {
   const onSubmit = async (values, actions) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
     actions.resetForm();
+    toast.success("Account Created Successfully");
   };
 
   const {
@@ -207,6 +210,7 @@ const Modals = ({ show, setShow, change }) => {
                 >
                   Sign Up
                 </button>
+                <ToastContainer position="top-center" />
               </div>
               <p className="text-center mt-2">
                 Already have an account..&nbsp;
