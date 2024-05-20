@@ -17,9 +17,7 @@
   color: orange;
   z-index: 2;
 }
-.logo {
-  width: 100px;
-  border-radius: 20px;
-  margin: 0 auto;
-  z-index: 3;
+.logo{
+  width:150px;
 }
+
