@@ -1,17 +1,16 @@
 import { useState } from "react";
 import "../../src/App.css";
 import logo from "../assets/images/logo-transparent.png";
-import Button from "react-bootstrap/Button";
+import { useFormik } from "formik";
 import Modal from "react-bootstrap/Modal";
+import { basicSchema } from "../Formik/formikSchema";
 const Modals = ({ show, setShow, change }) => {
   const [signup, setSignup] = useState(false);
-  const [modalclose, setModalClose] = useState("modal");
 
   const handleClose = () => {
     setShow(false);
     change("0");
   };
-  const handleShow = () => setShow(true);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -21,6 +20,32 @@ const Modals = ({ show, setShow, change }) => {
     e.preventDefault();
     setSignup(false);
   };
+
+  // Formik
+
+  const onSubmit = async (values, actions) => {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    actions.resetForm();
+  };
+
+  const {
+    values,
+    touched,
+    errors,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    isSubmitting,
+  } = useFormik({
+    initialValues: {
+      username: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+    validationSchema: basicSchema,
+    onSubmit,
+  });
 
   return (
     <>
@@ -87,52 +112,99 @@ const Modals = ({ show, setShow, change }) => {
             <div className="d-flex justify-content-center">
               <img className="logo" src={logo}></img>
             </div>
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="mb-3">
-                <label htmlFor="exampleInputUsername" className="form-label">
+                <label htmlFor="username" className="form-label">
                   User Name
                 </label>
                 <input
-                  type="email"
-                  className="form-control"
-                  id="exampleInputUsername"
-                  aria-describedby="emailHelp"
+                  type="text"
+                  name="username"
+                  className={
+                    errors.username && touched.username
+                      ? "input-error form-control"
+                      : "form-control"
+                  }
+                  id="username"
+                  value={values.username}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 ></input>
+                {errors.username && touched.username && (
+                  <p className="text-danger">{errors.username}</p>
+                )}
               </div>
               <div className="mb-3">
-                <label htmlFor="exampleInputEmail1" className="form-label">
+                <label htmlFor="email" className="form-label">
                   Email address
                 </label>
                 <input
                   type="email"
-                  className="form-control"
-                  id="exampleInputEmail1"
-                  aria-describedby="emailHelp"
+                  name="email"
+                  className={
+                    errors.email && touched.email
+                      ? "input-error form-control"
+                      : "form-control"
+                  }
+                  id="email"
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 ></input>
+                {errors.email && touched.email && (
+                  <p className="text-danger">{errors.email}</p>
+                )}
               </div>
               <div className="mb-3">
-                <label htmlFor="exampleInputPassword1" className="form-label">
+                <label htmlFor="password" className="form-label">
                   Password
                 </label>
                 <input
                   type="password"
-                  className="form-control"
-                  id="exampleInputPassword1"
+                  name="password"
+                  className={
+                    errors.password && touched.password
+                      ? "input-error form-control"
+                      : "form-control"
+                  }
+                  id="password"
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  placeholder="min-5-characters,1-upper-case Letter,1-Lowe-Case-Letter,1-numeric-Digit"
                 ></input>
+                {errors.password && touched.password && (
+                  <p className="text-danger">{errors.password}</p>
+                )}
               </div>
               <div className="mb-3">
-                <label htmlFor="exampleInputPassword2" className="form-label">
+                <label htmlFor="confirmPassword" className="form-label">
                   confirm Password
                 </label>
                 <input
                   type="password"
-                  className="form-control"
-                  id="exampleInputPassword2"
+                  name="confirmPassword"
+                  className={
+                    errors.confirmPassword && touched.confirmPassword
+                      ? "input-error form-control"
+                      : "form-control"
+                  }
+                  id="confirmPassword"
+                  value={values.confirmPassword}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 ></input>
+                {errors.confirmPassword && touched.confirmPassword && (
+                  <p className="text-danger">{errors.confirmPassword}</p>
+                )}
               </div>
 
               <div className="d-flex justify-content-center">
-                <button type="button" className="btn btn-primary">
+                <button
+                  className="btn btn-primary"
+                  type="submit"
+                  disabled={isSubmitting}
+                >
                   Sign Up
                 </button>
               </div>
