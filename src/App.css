@@ -20,7 +20,11 @@
   width: 150px;
 }
 .modal-content {
-  background-image: linear-gradient(to top, #96fbc4 0%, #f9f586 100%) !important;
+  background-image: linear-gradient(
+    to top,
+    #96fbc4 0%,
+    #f9f586 100%
+  ) !important;
 }
 
 input.input-error {
@@ -34,4 +38,14 @@ input.input-error {
   -webkit-background-clip: text;
   text-fill-color: transparent;
   -webkit-text-fill-color: transparent;
+}
+.home-container {
+  height: 100vh;
+  background-image: linear-gradient(
+      to top ,
+      rgba(255, 255, 255, 0.2),
+      rgba(242, 132, 23, 0.3)
+    ),
+    url("./assets/images/background.avif");
+  background-size: cover;
 }

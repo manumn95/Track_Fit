@@ -1,13 +1,17 @@
-import "../../src/App.css";
-import video from "../assets/videos/bg.mp4";
+
 import GoalsModal from "./GoalsModal";
+import Navbar from "./Navbar";
+import '../../src/App.css'
+
 const Dashboard = () => {
   return (
     <>
-      <video autoPlay loop muted className="video-background" controls={false}>
-        <source src={video} type="video/mp4" />
-      </video>
+     <div className="home-container">
+     <Navbar></Navbar>
       <GoalsModal></GoalsModal>
+     </div>
+
+
     </>
   );
 };
