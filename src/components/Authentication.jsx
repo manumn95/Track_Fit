@@ -20,6 +20,7 @@ const Authentication = () => {
         autoPlay
         loop
         muted
+        controls={false}
         className="video-background"
         style={{ zIndex: `${zindex}` }}
       >

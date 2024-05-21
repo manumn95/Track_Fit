@@ -1,23 +1,28 @@
 import { useState, useEffect } from "react";
 import { Modal } from "react-bootstrap";
-import { useFormik, Formik, Form, Field, ErrorMessage } from "formik";
+import { useFormik, Formik, Form } from "formik";
 import { basicSchema } from "../Formik/GoalSchema";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { json } from "react-router-dom";
+
 const GoalsModal = () => {
-  const showmodal = localStorage.getItem("showmodal");
-  const [show, setShow] = useState(false);
+  let showmodals = JSON.parse(localStorage.getItem("showmodal"));
+  console.log(showmodals);
+  const [show, setShow] = useState();
 
   useEffect(() => {
     // Show the modal when the component mounts
-    setShow(JSON.parse(showmodal));
+    if (showmodals === true || showmodals === null) {
+      setShow(true);
+    } else {
+      setShow(false);
+    }
   }, []);
 
   const onSubmit = async () => {
-    localStorage.setItem("showmodal", JSON.stringify(false));
     toast("success");
     await new Promise((resolve) => setTimeout(resolve, 5000));
+    localStorage.setItem("showmodal", JSON.stringify(!show));
     setShow(false);
   };
   const { values, touched, errors, handleBlur, handleChange, handleSubmit } =

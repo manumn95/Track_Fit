@@ -2,17 +2,14 @@ import "../../src/App.css";
 import video from "../assets/videos/bg.mp4";
 import GoalsModal from "./GoalsModal";
 const Dashboard = () => {
-  return <>
-   <video
-        autoPlay
-        loop
-        muted
-        className="video-background"
-      >
+  return (
+    <>
+      <video autoPlay loop muted className="video-background" controls={false}>
         <source src={video} type="video/mp4" />
       </video>
-  <GoalsModal></GoalsModal>
-  </>;
+      <GoalsModal></GoalsModal>
+    </>
+  );
 };
 
 export default Dashboard;
