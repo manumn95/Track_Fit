@@ -4,7 +4,7 @@ import { useFormik, Formik, Form } from "formik";
 import { basicSchema } from "../Formik/GoalSchema";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import "../../src/App.css";
 const GoalsModal = () => {
   let showmodals = JSON.parse(localStorage.getItem("showmodal"));
   console.log(showmodals);
@@ -45,8 +45,11 @@ const GoalsModal = () => {
       keyboard={false}
       centered
     >
-      <Modal.Body>
-        <h1 className="text-center" style={{ fontFamily: "cursive" }}>
+      <Modal.Body className="modal-content">
+        <h1
+          className="text-center text-gradient "
+          style={{ fontFamily: "cursive" }}
+        >
           `Set your Goal`
         </h1>
         <Formik>
@@ -58,6 +61,7 @@ const GoalsModal = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.radioGroup}
+                className="text-info-emphasis"
               >
                 <input
                   type="radio"
@@ -80,9 +84,9 @@ const GoalsModal = () => {
             {errors.radioGroup && (
               <p className="text-danger">{errors.radioGroup}</p>
             )}
-            <h2 className="mt-4 text-center text-decoration-underline">
+            <h5 className="mt-4 text-center text-decoration-underline">
               Personal Details
-            </h2>
+            </h5>
             <div className="mb-3">
               <label htmlFor="age" className="form-label">
                 Your age

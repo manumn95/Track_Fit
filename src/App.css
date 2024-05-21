@@ -20,9 +20,18 @@
   width: 150px;
 }
 .modal-content {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-image: linear-gradient(to top, #96fbc4 0%, #f9f586 100%) !important;
 }
 
 input.input-error {
   border: 2px solid red;
+}
+.text-gradient {
+  /** TEXT GRADIENT */
+  color: #5a915b;
+  background-image: -webkit-linear-gradient(45deg, #5a915b 56%, #ff9800 50%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
 }
