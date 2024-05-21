@@ -13,8 +13,14 @@
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: "Playfair Display", serif;
-  color: orange;
+  color: white;
   z-index: 0;
+}
+@media(max-width:650px)
+{
+  .text-overlay h1{
+    font-size: 40px;
+  }
 }
 .logo {
   width: 150px;
@@ -42,7 +48,7 @@ input.input-error {
 .home-container {
   height: 100vh;
   background-image: linear-gradient(
-      to top ,
+      to top,
       rgba(255, 255, 255, 0.2),
       rgba(242, 132, 23, 0.3)
     ),

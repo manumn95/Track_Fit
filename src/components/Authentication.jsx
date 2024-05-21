@@ -28,14 +28,14 @@ const Authentication = () => {
       </video>
 
       <div className={zindex ? "zindex text-overlay" : "text-overlay"}>
-        <h1 className="display-4">Welcome To Track-Fit</h1>
-        <p className="lead text-success  text-center">
+        <h1 className="display-1 fw-bold">Welcome To Track-Fit</h1>
+        <p className="display-5 text-success  text-center">
           `{"Keep track of your health"}`
         </p>
         <div className="d-flex justify-content-center">
           <button
             type="button"
-            className="btn btn-primary"
+            className="btn btn-danger p-4"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
             onClick={handleClick}
