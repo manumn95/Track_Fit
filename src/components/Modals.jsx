@@ -3,7 +3,7 @@ import "../../src/App.css";
 import logo from "../assets/images/logo-transparent.png";
 import { useFormik } from "formik";
 import Modal from "react-bootstrap/Modal";
-import { basicSchema } from "../Formik/formikSchema";
+import { basicSchema } from "../Formik/SignupSchema";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Modals = ({ show, setShow, change }) => {
@@ -174,7 +174,6 @@ const Modals = ({ show, setShow, change }) => {
                   value={values.password}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  placeholder="min-5-characters,1-upper-case Letter,1-Lowe-Case-Letter,1-numeric-Digit"
                 ></input>
                 {errors.password && touched.password && (
                   <p className="text-danger">{errors.password}</p>
