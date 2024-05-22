@@ -91,12 +91,20 @@ const Dashboard = () => {
             <h3 className="text-center fw-bold">Your Goal</h3>
             <div className="card">
               <div className="card-body">
-                <h5 className="text-center p-5 fw-bold fs-3 gradient-text">
+                <h5 className="text-center fw-bold fs-3 gradient-text">
                   weight Loss
                 </h5>
                 <div className="d-flex justify-content-between">
                   <p className="text-info fw-bold">Weight:65kg</p>
                   <p className="text-info fw-bold">Age:32yrs</p>
+                </div>
+                <div className="card">
+                  <div className="card-body gradient rounded">
+                    <div className="d-flex gap-4">
+                      <i className="bi bi-snow2"></i>
+                      <h5>Eat up to <strong>250 kcal</strong></h5>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
