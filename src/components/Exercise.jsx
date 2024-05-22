@@ -9,23 +9,25 @@ const Exercise = () => {
           >
             <i className="bi bi-pencil-fill"></i>
             <i className="bi bi-trash-fill"></i>
-            <i className="bi bi-floppy"></i>
           </div>
           <div>
             <h4 className="text-center ">Cycling</h4>
-            <ul className="list-group ">
-              <li className="list-group-item gradient">
-                Date:&nbsp;<span className="text-white ">ji</span>
+            <ul style={{ listStyle: "none" }} className="p-1 fs-5">
+              <li className=" gradient">
+                Date:&nbsp;<span className="text-white "></span>
               </li>
-              <li className="list-group-item gradient">
-                Duration:&nbsp;<span className="text-white ">ji</span>
+              <li className=" gradient">
+                Duration:&nbsp;<span className="text-white "></span>
               </li>
-              <li className="list-group-item gradient">
-                Sets:&nbsp;<span className="text-white ">ji</span>
+              <li className=" gradient">
+                Sets:&nbsp;<span className="text-white "></span>
               </li>
-              <li className="list-group-item gradient">
+              <li className=" gradient">
+                Steps:&nbsp;<span className="text-white "></span>
+              </li>
+              <li className=" gradient">
                 Calories Burned:&nbsp;
-                <span className="text-white ">ji</span>
+                <span className="text-white "></span>
               </li>
             </ul>
           </div>

@@ -25,13 +25,13 @@ const ExerciseModal = ({ show, setShow }) => {
               <input type="text" className="form-control" id="name"></input>
             </div>
             <div className="mb-3">
-              <label htmlFor="exampleInputEmail1" className="form-label">
+              <label htmlFor="date" className="form-label">
                 Date
               </label>
               <input type="date" className="form-control" id="date"></input>
             </div>
             <div className="mb-3">
-              <label htmlFor="exampleInputEmail1" className="form-label">
+              <label htmlFor="duration" className="form-label">
                 Duration
               </label>
               <input
@@ -41,13 +41,19 @@ const ExerciseModal = ({ show, setShow }) => {
               ></input>
             </div>
             <div className="mb-3">
-              <label htmlFor="exampleInputEmail1" className="form-label">
+              <label htmlFor="sets" className="form-label">
                 Sets
               </label>
               <input type="number" className="form-control" id="sets"></input>
             </div>
             <div className="mb-3">
-              <label htmlFor="exampleInputEmail1" className="form-label">
+              <label htmlFor="steps" className="form-label">
+                Steps
+              </label>
+              <input type="number" className="form-control" id="steps"></input>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="calories" className="form-label">
                 Calories Burned
               </label>
               <input
