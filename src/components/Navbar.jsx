@@ -39,7 +39,7 @@ const Navbar = () => {
               </li>
             </ul>
             <div className="d-flex ms-auto gap-3">
-              <h4 className="fs-3 fw-medium bg-secondary rounded-circle p-1 text-white">
+              <h4 className="fs-3 fw-medium gradient rounded-circle p-2 text-white">
                 M
               </h4>
               <h4 className=" fs-3 fw-medium gradient-text">manumn</h4>

@@ -30,18 +30,6 @@ const Dashboard = () => {
 
   return (
     <>
-      {/* <div className="container">
-      <h1 className="text-center my-4">Fitness Tracker Dashboard</h1>
-      <div className="row">
-        <StatCard title="Steps Taken" value={stepsData.reduce((a, b) => a + b, 0)} />
-        <StatCard title="Calories Burned" value={caloriesData.reduce((a, b) => a + b, 0)} />
-        <StatCard title="Heart Rate" value="75 bpm" />
-      </div>
-      <div className="row">
-        <ChartCard type="line" data={stepsChartData} options={chartOptions} />
-        <ChartCard type="bar" data={caloriesChartData} options={chartOptions} />
-      </div>
-    </div> */}
 
       <div className="container mt-3">
         <div className="row">
