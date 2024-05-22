@@ -1,6 +1,7 @@
 import logo from "../assets/images/logo-transparent.png";
 import "../../src/App.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+
 const Navbar = () => {
   const handleLogout = () => {
     localStorage.setItem("showmodal", true);
@@ -8,11 +9,11 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg fixed-top navbar-light">
+      <nav className="navbar navbar-expand-lg sticky-top navbar-light">
         <div className="container">
-          <a href="index.html" className="navbar-brand">
+          <Link to="/landing" className="navbar-brand">
             <img style={{ width: "100px" }} src={logo} alt="" width="225" />
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -24,18 +25,16 @@ const Navbar = () => {
           <div className="collapse navbar-collapse " id="navbarNavDropdown">
             <ul className="navbar-nav  ">
               <li className="nav-item">
-                <NavLink to="/dashboard" className="nav-link fw-semibold text-white">
-                  Home
+                <NavLink to="/landing/home" className="nav-link fw-semibold  ">
+                  Dashboard
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="" className="nav-link fw-semibold text-white">
-                  Details
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink to="" className="nav-link fw-semibold text-white">
-                  Contact
+                <NavLink
+                  to="/landing/activities"
+                  className="nav-link fw-semibold  "
+                >
+                  Activities
                 </NavLink>
               </li>
             </ul>

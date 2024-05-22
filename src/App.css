@@ -16,12 +16,7 @@
   color: white;
   z-index: 0;
 }
-@media(max-width:650px)
-{
-  .text-overlay h1{
-    font-size: 40px;
-  }
-}
+
 .logo {
   width: 150px;
 }
@@ -54,4 +49,18 @@ input.input-error {
     ),
     url("./assets/images/background.avif");
   background-size: cover;
+}
+.gradient-text {
+  background: linear-gradient(90deg, #ff7e5f, #feb47b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@media(max-width:650px)
+{
+  .text-overlay h1{
+    font-size: 40px;
+  }
+  .navbar{
+    background-color: lightgray;
+  }
 }
