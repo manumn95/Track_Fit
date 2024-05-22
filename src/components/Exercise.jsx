@@ -13,7 +13,7 @@ const Exercise = () => {
           </div>
           <div>
             <h4 className="text-center ">Cycling</h4>
-            <ul>
+            <ul style={{listStyle:'none'}}>
               <li>
                 Date:
                 <input
