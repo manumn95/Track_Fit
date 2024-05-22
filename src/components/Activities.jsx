@@ -2,9 +2,20 @@ import { useState } from "react";
 import image from "../assets/images/activity.png";
 import Exercise from "./Exercise";
 import ExerciseModal from "./ExerciseModal";
-
+import CircularProgress from "@mui/material/CircularProgress";
 const Activities = () => {
   const [show, setShow] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [value, setValue] = useState(0);
+
+  const handleInc = () => {
+    setProgress((preVal) => (preVal >= 100 ? 0 : preVal + 10));
+    setValue((preVal) => (preVal >= 10 ? 0 : (preVal += 1)));
+  };
+  const handleDec = () => {
+    setProgress((preVal) => (preVal <= 0 ? null : preVal - 10));
+    setValue((preVal) => (preVal <= 0 ? 0 : (preVal -= 1)));
+  };
   return (
     <>
       <div className="container">
@@ -14,6 +25,28 @@ const Activities = () => {
               Hello,<span className="fw-bold gradient-text">Manu!</span>
             </h2>
             <p className="lead ">Track your workouts..</p>
+            <div className="card shadow">
+              <div
+                className="card-body d-flex gap-5 "
+                style={{ cursor: "pointer" }}
+              >
+                <CircularProgress
+                  variant="determinate"
+                  value={progress}
+                  className="border rounded-circle"
+                />
+                <div className="d-flex gap-1">
+                  <i
+                    className="bi bi-plus-circle-fill fs-4"
+                    onClick={handleInc}
+                  ></i>
+                  <i className="bi bi-cup-straw fs-4"></i>
+                  <i className="bi bi-dash-circle fs-4" onClick={handleDec}></i>
+                  <span className="fs-4">={value}</span>
+                </div>
+              </div>
+              <p className="text-muted">Drink 10 glass of water</p>
+            </div>
           </div>
           <div className="col-md-9 text-center">
             <img style={{ width: "200px" }} src={image}></img>
@@ -29,7 +62,7 @@ const Activities = () => {
             </button>
           </div>
         </div>
-        <div className="row">
+        <div className="row mt-3">
           <h2 className="gradient-text">
             Your Activities.
             <span>
