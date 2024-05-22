@@ -5,6 +5,7 @@ import Dashboard from "./components/Dashboard.jsx";
 import Activities from "./components/Activities.jsx";
 import Landingpage from "./components/Landingpage.jsx";
 import Template from "./components/Template.jsx";
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 const router = createBrowserRouter([
   {

@@ -39,9 +39,11 @@ const Navbar = () => {
               </li>
             </ul>
             <div className="d-flex ms-auto gap-3">
-              <h4 className="text-warning fs-3 fw-medium">Welcome manumn</h4>
+              <h4 className="fs-3 fw-medium bg-secondary rounded-circle p-1 text-white">
+                M
+              </h4>
+              <h4 className=" fs-3 fw-medium gradient-text">manumn</h4>
               <form onSubmit={handleLogout}>
-                {" "}
                 <button type="submit" className="btn btn-danger">
                   Logout
                 </button>

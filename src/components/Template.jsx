@@ -13,13 +13,13 @@ const Template = () => {
         <div className="row">
           <div className="col-md-7 ">
             <div className="container p-5 bg-muted border shadow-lg">
-              <h1 className=" display-4   fw-bolder gradient-text">
+              <h1 className=" display-4 text  fw-bolder gradient-text">
                 Your body can stand almost anything. It’s your mind that you
                 have to convince.
               </h1>
             </div>
           </div>
-          <div className="col-md-5">
+          <div className="col-md-5 mb-1">
             <img style={{ width: "100%", height: "100%" }} src={workout}></img>
           </div>
         </div>

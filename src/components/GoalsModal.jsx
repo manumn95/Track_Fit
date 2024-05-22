@@ -32,6 +32,7 @@ const GoalsModal = () => {
         age: "",
         height: "",
         weight: "",
+        genderGroup:""
       },
       validationSchema: basicSchema,
       onSubmit,
@@ -87,6 +88,7 @@ const GoalsModal = () => {
             <h5 className="mt-4 text-center text-decoration-underline">
               Personal Details
             </h5>
+            
             <div className="mb-3">
               <label htmlFor="age" className="form-label">
                 Your age
@@ -103,6 +105,36 @@ const GoalsModal = () => {
                 <p className="text-danger">{errors.age}</p>
               )}
             </div>
+            <div className="d-flex mb-3">
+              <fieldset
+                id="genderGroup"
+                label="One of these please"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.genderGroup}
+                className="text-info-emphasis"
+              >
+                <input
+                  type="radio"
+                  name="gender"
+                  id="gender1"
+                  label="Choose this option"
+                  value="male"
+                />
+                Male &nbsp; &nbsp; &nbsp;
+                <input
+                  type="radio"
+                  name="gender"
+                  id="gender2"
+                  label="Or choose this one"
+                  value="female"
+                />
+               Female
+              </fieldset>
+            </div>
+            {errors.genderGroup && (
+              <p className="text-danger">{errors.genderGroup}</p>
+            )}
             <div className="mb-3">
               <label htmlFor="height" className="form-label">
                 Your Heigth
@@ -137,6 +169,7 @@ const GoalsModal = () => {
                 <p className="text-danger">{errors.weight}</p>
               )}
             </div>
+
             <button className="btn btn-primary" type="submit">
               Save
             </button>

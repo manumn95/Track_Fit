@@ -40,6 +40,10 @@ input.input-error {
   text-fill-color: transparent;
   -webkit-text-fill-color: transparent;
 }
+
+.navbar {
+  background-color: white !important;
+}
 .home-container {
   height: 100vh;
   background-image: linear-gradient(
@@ -55,12 +59,23 @@ input.input-error {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-@media(max-width:650px)
-{
-  .text-overlay h1{
+
+.gradient {
+  background: linear-gradient(90deg, #ff7e5f, #feb47b);
+}
+
+@media (max-width: 650px) {
+  .text-overlay h1 {
     font-size: 40px;
   }
-  .navbar{
+  .navbar {
     background-color: lightgray;
+  }
+
+  .text {
+    font-size: 35px !important;
+  }
+  .container-fluid {
+    display: none;
   }
 }
