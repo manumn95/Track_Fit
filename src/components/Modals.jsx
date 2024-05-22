@@ -26,7 +26,7 @@ const Modals = ({ show, setShow, change }) => {
   // Formik
 
   const onSubmit = async (values, actions) => {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 6000));
     actions.resetForm();
     toast.success("Account Created Successfully");
   };

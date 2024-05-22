@@ -1,11 +1,35 @@
 import { Modal } from "react-bootstrap";
+import { useFormik } from "formik";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../src/App.css";
+import { basicSchema } from "../Formik/WorkoutSchema";
 const ExerciseModal = ({ show, setShow }) => {
   const handleClose = () => {
     setShow(false);
   };
+
+  const onSubmit = async (values, actions) => {
+    toast("Exercise Added");
+    actions.resetForm();
+    await new Promise((resolve) => setTimeout(resolve, 6000));
+    setShow(false);
+  };
+
+  const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: {
+        name: "",
+        date: "",
+        duration: "",
+        sets: "",
+        steps: "",
+        calories: "",
+      },
+      validationSchema: basicSchema,
+      onSubmit,
+    });
+
   return (
     <>
       <Modal
@@ -17,18 +41,40 @@ const ExerciseModal = ({ show, setShow }) => {
       >
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <label htmlFor="exampleInputEmail1" className="form-label">
                 Exercise Name
               </label>
-              <input type="text" className="form-control" id="name"></input>
+              <input
+                type="text"
+                className="form-control"
+                id="name"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.name}
+              ></input>
+
+              {errors.name && touched.name && (
+                <p className="text-danger">{errors.name}</p>
+              )}
             </div>
             <div className="mb-3">
               <label htmlFor="date" className="form-label">
                 Date
               </label>
-              <input type="date" className="form-control" id="date"></input>
+              <input
+                type="date"
+                className="form-control"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.date}
+                id="date"
+              ></input>
+
+              {errors.date && touched.date && (
+                <p className="text-danger">{errors.date}</p>
+              )}
             </div>
             <div className="mb-3">
               <label htmlFor="duration" className="form-label">
@@ -38,19 +84,48 @@ const ExerciseModal = ({ show, setShow }) => {
                 type="number"
                 className="form-control"
                 id="duration"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.duration}
               ></input>
+
+              {errors.duration && touched.duration && (
+                <p className="text-danger">{errors.duration}</p>
+              )}
             </div>
             <div className="mb-3">
               <label htmlFor="sets" className="form-label">
                 Sets
               </label>
-              <input type="number" className="form-control" id="sets"></input>
+              <input
+                type="number"
+                className="form-control"
+                id="sets"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.sets}
+              ></input>
+
+              {errors.sets && touched.sets && (
+                <p className="text-danger">{errors.sets}</p>
+              )}
             </div>
             <div className="mb-3">
               <label htmlFor="steps" className="form-label">
                 Steps
               </label>
-              <input type="number" className="form-control" id="steps"></input>
+              <input
+                type="number"
+                className="form-control"
+                id="steps"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.steps}
+              ></input>
+
+              {errors.steps && touched.steps && (
+                <p className="text-danger">{errors.steps}</p>
+              )}
             </div>
             <div className="mb-3">
               <label htmlFor="calories" className="form-label">
@@ -60,12 +135,20 @@ const ExerciseModal = ({ show, setShow }) => {
                 type="number"
                 className="form-control"
                 id="calories"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.calories}
               ></input>
+
+              {errors.calories && touched.calories && (
+                <p className="text-danger">{errors.calories}</p>
+              )}
             </div>
 
-            <button type="button" className="btn gradient text-white border">
+            <button type="submit" className="btn gradient text-white border">
               Add Exercsie
             </button>
+            <ToastContainer position="top-center" />
           </form>
         </Modal.Body>
       </Modal>
