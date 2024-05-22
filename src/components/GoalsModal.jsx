@@ -32,7 +32,7 @@ const GoalsModal = () => {
         age: "",
         height: "",
         weight: "",
-        genderGroup:""
+        genderGroup: "",
       },
       validationSchema: basicSchema,
       onSubmit,
@@ -88,7 +88,7 @@ const GoalsModal = () => {
             <h5 className="mt-4 text-center text-decoration-underline">
               Personal Details
             </h5>
-            
+
             <div className="mb-3">
               <label htmlFor="age" className="form-label">
                 Your age
@@ -116,7 +116,7 @@ const GoalsModal = () => {
               >
                 <input
                   type="radio"
-                  name="gender"
+                  name="genderGroup"
                   id="gender1"
                   label="Choose this option"
                   value="male"
@@ -124,17 +124,18 @@ const GoalsModal = () => {
                 Male &nbsp; &nbsp; &nbsp;
                 <input
                   type="radio"
-                  name="gender"
+                  name="genderGroup"
                   id="gender2"
                   label="Or choose this one"
                   value="female"
                 />
-               Female
+                Female
               </fieldset>
             </div>
             {errors.genderGroup && (
               <p className="text-danger">{errors.genderGroup}</p>
             )}
+
             <div className="mb-3">
               <label htmlFor="height" className="form-label">
                 Your Heigth

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import image from "../assets/images/activity.png";
 import Exercise from "./Exercise";
 import ExerciseModal from "./ExerciseModal";
@@ -16,6 +16,23 @@ const Activities = () => {
     setProgress((preVal) => (preVal <= 0 ? null : preVal - 10));
     setValue((preVal) => (preVal <= 0 ? 0 : (preVal -= 1)));
   };
+
+  useEffect(() => {
+    const storedValue = localStorage.getItem("progress");
+    if (storedValue) {
+      setProgress(parseInt(storedValue));
+    }
+    const storedValue2 = localStorage.getItem("answer");
+    if (storedValue2) {
+      setValue(parseInt(storedValue2));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("progress", progress);
+    localStorage.setItem("answer", value);
+  }, [progress],[value]);
+
   return (
     <>
       <div className="container">
@@ -42,10 +59,10 @@ const Activities = () => {
                   ></i>
                   <i className="bi bi-cup-straw fs-4"></i>
                   <i className="bi bi-dash-circle fs-4" onClick={handleDec}></i>
-                  <span className="fs-4">={value}</span>
+                  <span className="fs-4 text-warning">={value}</span>
                 </div>
               </div>
-              <p className="text-muted">Drink 10 glass of water</p>
+              <p className="text-muted">Drink 10 glasses of water</p>
             </div>
           </div>
           <div className="col-md-9 text-center">
