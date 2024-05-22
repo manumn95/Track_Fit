@@ -1,7 +1,10 @@
+import { useState } from "react";
 import image from "../assets/images/activity.png";
 import Exercise from "./Exercise";
+import ExerciseModal from "./ExerciseModal";
 
 const Activities = () => {
+  const[show,setShow]=useState(false)
   return (
     <>
       <div className="container">
@@ -12,7 +15,7 @@ const Activities = () => {
               Burning your Calories helps you get fitter,healthier and lose
               weigth
             </p>
-            <button className="btn gradient text-white fs-6">
+            <button className="btn gradient text-white fs-6" onClick={()=>setShow(true)}>
               Add Exercise
             </button>
           </div>
@@ -29,6 +32,7 @@ const Activities = () => {
           </div>
         </div>
       </div>
+      <ExerciseModal show={show} setShow={setShow}></ExerciseModal>
     </>
   );
 };

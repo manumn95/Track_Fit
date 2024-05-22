@@ -1,7 +1,7 @@
 const Exercise = () => {
   return (
     <>
-      <div className="card mt-5">
+      <div className="card mt-3">
         <div className="card-body gradient rounded shadow">
           <div
             className="d-flex justify-content-end gap-3"
@@ -13,42 +13,19 @@ const Exercise = () => {
           </div>
           <div>
             <h4 className="text-center ">Cycling</h4>
-            <ul style={{listStyle:'none'}}>
-              <li>
-                Date:
-                <input
-                  type="text"
-                  className="text-white"
-                  style={{ background: "transparent", border: "none" }}
-                  readOnly
-                ></input>
+            <ul className="list-group ">
+              <li className="list-group-item gradient">
+                Date:&nbsp;<span className="text-white ">ji</span>
               </li>
-              <li>
-                Duration:
-                <input
-                  type="text"
-                  className="text-white"
-                  style={{ background: "transparent", border: "none" }}
-                  readOnly
-                ></input>
+              <li className="list-group-item gradient">
+                Duration:&nbsp;<span className="text-white ">ji</span>
               </li>
-              <li>
-                Sets:
-                <input
-                  type="text"
-                  className="text-white"
-                  style={{ background: "transparent", border: "none" }}
-                  readOnly
-                ></input>
+              <li className="list-group-item gradient">
+                Sets:&nbsp;<span className="text-white ">ji</span>
               </li>
-              <li>
-                Calories Burned:
-                <input
-                  type="text"
-                  className="text-white"
-                  style={{ background: "transparent", border: "none" }}
-                  readOnly
-                ></input>
+              <li className="list-group-item gradient">
+                Calories Burned:&nbsp;
+                <span className="text-white ">ji</span>
               </li>
             </ul>
           </div>

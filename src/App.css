@@ -23,15 +23,15 @@
 .modal-content {
   background-image: linear-gradient(
     to top,
-    #96fbc4 0%,
-    #f9f586 100%
+    #ff7e5f 0%,
+    #feb47b 100%
   ) !important;
 }
 
 input.input-error {
   border: 2px solid red;
 }
-.text-gradient {
+.text-gradient  {
   /** TEXT GRADIENT */
   color: #5a915b;
   background-image: -webkit-linear-gradient(45deg, #5a915b 56%, #ff9800 50%);
@@ -60,7 +60,7 @@ input.input-error {
   -webkit-text-fill-color: transparent;
 }
 
-.gradient {
+.gradient  {
   background: linear-gradient(90deg, #ff7e5f, #feb47b);
 }
 
