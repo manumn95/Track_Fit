@@ -7,6 +7,9 @@ import Landingpage from "./components/Landingpage.jsx";
 import Template from "./components/Template.jsx";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Diet from "./components/Diet.jsx";
+import Recipes from "./components/Recipes.jsx";
+import MealsCard from "./components/MealsCard.jsx";
+import Catagories from "./components/Catagories.jsx";
 
 const router = createBrowserRouter([
   {
@@ -18,11 +21,11 @@ const router = createBrowserRouter([
     element: <Landingpage></Landingpage>,
     children: [
       {
-        index:true,
-        element:<Template></Template>
+        index: true,
+        element: <Template></Template>,
       },
       {
-        path: 'home',
+        path: "home",
         element: <Dashboard></Dashboard>,
       },
       {
@@ -31,7 +34,21 @@ const router = createBrowserRouter([
       },
       {
         path: "diet",
-        element:<Diet></Diet>
+        element: <Diet></Diet>,
+      },
+      {
+        path: "recipes",
+        element: <Recipes></Recipes>,
+        children: [
+          {
+            index: true,
+            element:<Catagories></Catagories>,
+          },
+          {
+            path: ":meals",
+            element: <MealsCard></MealsCard>,
+          },
+        ],
       },
     ],
   },

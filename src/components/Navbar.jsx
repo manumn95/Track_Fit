@@ -1,6 +1,6 @@
 import logo from "../assets/images/logo-transparent.png";
 import "../../src/App.css";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, } from "react-router-dom";
 
 const Navbar = () => {
   const handleLogout = () => {
