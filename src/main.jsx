@@ -6,6 +6,7 @@ import Activities from "./components/Activities.jsx";
 import Landingpage from "./components/Landingpage.jsx";
 import Template from "./components/Template.jsx";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import Diet from "./components/Diet.jsx";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "activities",
         element: <Activities></Activities>,
+      },
+      {
+        path: "diet",
+        element:<Diet></Diet>
       },
     ],
   },

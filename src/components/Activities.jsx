@@ -28,10 +28,14 @@ const Activities = () => {
     }
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem("progress", progress);
-    localStorage.setItem("answer", value);
-  }, [progress],[value]);
+  useEffect(
+    () => {
+      localStorage.setItem("progress", progress);
+      localStorage.setItem("answer", value);
+    },
+    [progress],
+    [value]
+  );
 
   return (
     <>
@@ -43,25 +47,22 @@ const Activities = () => {
             </h2>
             <p className="lead ">Track your workouts..</p>
             <div className="card shadow">
-              <div
-                className="card-body d-flex gap-5 "
-                style={{ cursor: "pointer" }}
-              >
+              <div className="d-flex p-3 gap-3">
+                <i
+                  className="bi bi-plus-circle-fill fs-4"
+                  onClick={handleInc}
+                ></i>
+
                 <CircularProgress
                   variant="determinate"
                   value={progress}
                   className="border rounded-circle"
                 />
-                <div className="d-flex gap-1">
-                  <i
-                    className="bi bi-plus-circle-fill fs-4"
-                    onClick={handleInc}
-                  ></i>
-                  <i className="bi bi-cup-straw fs-4"></i>
-                  <i className="bi bi-dash-circle fs-4" onClick={handleDec}></i>
-                  <span className="fs-4 text-warning">={value}</span>
-                </div>
+                <i className="bi bi-dash-circle fs-4" onClick={handleDec}></i>
+                <span className="fs-4 text-warning">={value}</span>
+                <i className="bi bi-cup-straw fs-4"></i>
               </div>
+
               <p className="text-muted">Drink 10 glasses of water</p>
             </div>
           </div>

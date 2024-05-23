@@ -37,6 +37,14 @@ const Navbar = () => {
                   Activities
                 </NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink
+                  to="/landing/diet"
+                  className="nav-link fw-semibold  "
+                >
+                 Diet
+                </NavLink>
+              </li>
             </ul>
             <div className="d-flex ms-auto gap-3">
               <h4 className="fs-3 fw-medium gradient rounded-circle p-2 text-white">
