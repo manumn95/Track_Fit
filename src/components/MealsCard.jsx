@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import nomeals from '../assets/images/noMeals.jpg'
 
 const MealsCard = () => {
   const [meal, setMeals] = useState([]);
@@ -27,15 +28,21 @@ const MealsCard = () => {
   console.log(meal);
   return (
     <>
-      {!meal ? (<div>
-        <div className=" gradient-text fixed-top fw-bold">
+      {!meal ? (
+        <div>
+          <div className=" gradient-text fixed-top fw-bold">
             <button className="btn border" onClick={() => history.back()}>
               Back
             </button>
           </div>
-        <h1 className="text-center gradient-text">Currently No Recpies Found....<p className="lead">we will update soon</p></h1>
-      </div>
-       
+          <h1 className="text-center gradient-text">
+            Currently No Recpies Found....
+            <p className="lead">we will update soon</p>
+          </h1>
+         <div className="container d-flex justify-content-center">
+          <img src={nomeals} style={{width:'500px'}}></img>
+         </div>
+        </div>
       ) : (
         <div className="container">
           <div className=" gradient-text fixed-top">
