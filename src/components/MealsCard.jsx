@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import nomeals from '../assets/images/noMeals.jpg'
+import ShimmerReceipe from "./ShimmerReceipe";
 
 const MealsCard = () => {
   const [meal, setMeals] = useState([]);
@@ -30,6 +31,7 @@ const MealsCard = () => {
     <>
       {!meal ? (
         <div>
+         
           <div className=" gradient-text fixed-top fw-bold">
             <button className="btn border" onClick={() => history.back()}>
               Back
@@ -43,8 +45,9 @@ const MealsCard = () => {
           <img src={nomeals} style={{width:'500px'}}></img>
          </div>
         </div>
-      ) : (
+      ) :<>{!meal.length?(<ShimmerReceipe></ShimmerReceipe>):(
         <div className="container">
+
           <div className=" gradient-text fixed-top">
             <button className="btn border" onClick={() => history.back()}>
               Back
@@ -143,7 +146,7 @@ const MealsCard = () => {
             })}
           </div>
         </div>
-      )}
+      )}</> }
     </>
   );
 };
