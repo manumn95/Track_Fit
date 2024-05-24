@@ -55,7 +55,7 @@ const MealsCard = () => {
           </div>
 
           <div className="row">
-            <h1 className="text-center gradient-text fw-bold">
+            <h1 className="text-center gradient-text fw-bold mb-4">
               {meals}-Dishes
             </h1>
             {meal.map((data, i) => {
