@@ -1,10 +1,14 @@
 import logo from "../assets/images/logo-transparent.png";
 import "../../src/App.css";
-import { NavLink, Link, } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
+
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const handleLogout = () => {
-    localStorage.setItem("showmodal", true);
+    //localStorage.setItem("showmodal", true);
+    //localStorage.setItem("userToken", true);
+   navigate('/')
   };
 
   return (
@@ -38,11 +42,8 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink
-                  to="/landing/diet"
-                  className="nav-link fw-semibold  "
-                >
-                 Diet
+                <NavLink to="/landing/diet" className="nav-link fw-semibold  ">
+                  Diet
                 </NavLink>
               </li>
             </ul>

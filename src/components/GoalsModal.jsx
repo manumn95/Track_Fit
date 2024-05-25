@@ -7,23 +7,23 @@ import "react-toastify/dist/ReactToastify.css";
 import "../../src/App.css";
 const GoalsModal = () => {
   let showmodals = JSON.parse(localStorage.getItem("showmodal"));
-  console.log(showmodals);
-  const [show, setShow] = useState();
+ 
+  const [shows, setShows] = useState();
 
   useEffect(() => {
     // Show the modal when the component mounts
     if (showmodals === true || showmodals === null) {
-      setShow(true);
+      setShows(true);
     } else {
-      setShow(false);
+      setShows(false);
     }
   }, []);
 
   const onSubmit = async () => {
     toast("success");
     await new Promise((resolve) => setTimeout(resolve, 5000));
-    localStorage.setItem("showmodal", JSON.stringify(!show));
-    setShow(false);
+    localStorage.setItem("showmodal", JSON.stringify(!shows));
+    setShows(false);
   };
   const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
     useFormik({
@@ -40,8 +40,8 @@ const GoalsModal = () => {
 
   return (
     <Modal
-      show={show}
-      onHide={() => setShow(false)}
+      show={shows}
+      onHide={() => setShows(false)}
       backdrop="static"
       keyboard={false}
       centered

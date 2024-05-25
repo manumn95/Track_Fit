@@ -6,12 +6,10 @@ import { Outlet } from "react-router-dom";
 const Landingpage = () => {
   return (
     <>
-      <div className="">
-        <Navbar></Navbar>
-        <GoalsModal></GoalsModal>
-       
-        <Outlet></Outlet>
-      </div>
+      <Navbar></Navbar>
+      <GoalsModal></GoalsModal>
+
+      <Outlet></Outlet>
     </>
   );
 };
