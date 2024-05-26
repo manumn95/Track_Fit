@@ -10,15 +10,11 @@ import Recipes from "./components/Recipes";
 import Catagories from "./components/Catagories";
 import MealsCard from "./components/MealsCard";
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const token = JSON.parse(localStorage.getItem("userToken"));
-    if (token === true || token === null) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
+    const token = localStorage.getItem("userToken");
+    setIsLoggedIn(!!token)
   }, []);
 
   return (

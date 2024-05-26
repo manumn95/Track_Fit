@@ -6,9 +6,11 @@ import { NavLink, Link, useNavigate } from "react-router-dom";
 const Navbar = () => {
   const navigate = useNavigate();
   const handleLogout = () => {
-    //localStorage.setItem("showmodal", true);
-    //localStorage.setItem("userToken", true);
-   navigate('/')
+    localStorage.setItem("showmodal", true);
+    localStorage.removeItem('userToken'); 
+    navigate('/'); 
+    window.location.reload(); 
+  
   };
 
   return (
