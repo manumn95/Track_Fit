@@ -20,8 +20,8 @@ const GoalsModal = () => {
   }, []);
 
   const onSubmit = async () => {
-    toast("success");
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    toast("Goal Added");
+    await new Promise((resolve) => setTimeout(resolve, 3000));
     localStorage.setItem("showmodal", JSON.stringify(!shows));
     setShows(false);
   };
