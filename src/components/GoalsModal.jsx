@@ -20,7 +20,7 @@ const GoalsModal = () => {
     }
   }, []);
 
-  const token = localStorage.getItem("userToken");
+  const token = localStorage.getItem("track-fit-token");
 
 
   const onSubmit = async (values) => {
@@ -30,12 +30,11 @@ const GoalsModal = () => {
         values,
         {
           headers: {
-            authorization: token,
+            auth: token,
           },
         }
       );
       toast(response.data.message);
-      console.log(response);
       await new Promise((resolve) => setTimeout(resolve, 3000));
       localStorage.setItem("showmodal", JSON.stringify(!shows));
       setShows(false);
@@ -66,7 +65,7 @@ const GoalsModal = () => {
 
   return (
     <Modal
-      show={false}
+      show={shows}
       onHide={() => setShows(false)}
       backdrop="static"
       keyboard={false}
@@ -198,7 +197,7 @@ const GoalsModal = () => {
             </div>
 
             <button className="btn btn-primary" type="submit">
-              Save
+              Add
             </button>
           </Form>
         </Formik>
