@@ -5,6 +5,7 @@ import { useState } from "react";
 import axios from "axios";
 import healthy from "../assets/images/healthy.png";
 import MealPlannerModal from "./MealPlannerModal";
+
 const Diet = () => {
   const [name, setName] = useState("");
   const[show,setShow]= useState(false)

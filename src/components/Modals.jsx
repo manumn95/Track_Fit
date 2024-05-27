@@ -6,8 +6,11 @@ import Modal from "react-bootstrap/Modal";
 import { basicSchema } from "../Formik/SignupSchema";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { userLogIn, userSignUp } from "../api";
+import { loginSuccess } from "../redux/reducers/userSlice";
+
 const Modals = ({ show, setShow, change }) => {
   const navigate = useNavigate();
   const [signup, setSignup] = useState(false);
@@ -32,16 +35,17 @@ const Modals = ({ show, setShow, change }) => {
   };
 
   // Formik
-
+  const dispatch = useDispatch();
   const onSubmit = async (values, actions) => {
-    await new Promise((resolve) => setTimeout(resolve, 6000));
+    try {
+      const response = await userSignUp(values);
+      dispatch(loginSuccess(response));
+      toast(response.data.message);
+    } catch (error) {
+      console.log(error);
+    }
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     actions.resetForm();
-
-    const response = await axios.post(
-      "http://localhost:8080/api/signUp",
-      values
-    );
-    toast.success(response.data.message);
   };
 
   const {
@@ -78,19 +82,17 @@ const Modals = ({ show, setShow, change }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/login",
-        logindata
-      );
+      const response = await userLogIn(logindata);
       if (response?.data?.token) {
+        dispatch(loginSuccess(response.data));
         setloginData({
           username: "",
           password: "",
         });
-        localStorage.setItem("userToken", response?.data?.token);
+
         toast.success(response.data.message);
         setTimeout(() => {
-          navigate("/landing");
+          //navigate("/landing");
           window.location.reload();
         }, 2000);
       } else {

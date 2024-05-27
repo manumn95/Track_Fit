@@ -1,16 +1,19 @@
 import logo from "../assets/images/logo-transparent.png";
 import "../../src/App.css";
 import { NavLink, Link, useNavigate } from "react-router-dom";
+import { useSelector,useDispatch } from "react-redux";
+import { logout } from "../redux/reducers/userSlice";
 
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+ const {currentUser} = useSelector((state)=>state.user)
+  console.log(currentUser)
   const handleLogout = () => {
-    localStorage.setItem("showmodal", true);
-    localStorage.removeItem('userToken'); 
-    navigate('/'); 
-    window.location.reload(); 
-  
+   dispatch(logout())
+    navigate("/");
+    window.location.reload();
   };
 
   return (
@@ -53,7 +56,7 @@ const Navbar = () => {
               <h4 className="fs-3 fw-medium gradient rounded-circle p-2 text-white">
                 M
               </h4>
-              <h4 className=" fs-3 fw-medium gradient-text">manumn</h4>
+              <h4 className=" fs-3 fw-medium gradient-text">{currentUser}</h4>
               <form onSubmit={handleLogout}>
                 <button type="submit" className="btn btn-danger">
                   Logout

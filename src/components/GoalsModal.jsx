@@ -5,9 +5,10 @@ import { basicSchema } from "../Formik/GoalSchema";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../src/App.css";
+import axios from "axios";
 const GoalsModal = () => {
   let showmodals = JSON.parse(localStorage.getItem("showmodal"));
- 
+
   const [shows, setShows] = useState();
 
   useEffect(() => {
@@ -19,11 +20,36 @@ const GoalsModal = () => {
     }
   }, []);
 
-  const onSubmit = async () => {
-    toast("Goal Added");
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-    localStorage.setItem("showmodal", JSON.stringify(!shows));
-    setShows(false);
+  const token = localStorage.getItem("userToken");
+
+
+  const onSubmit = async (values) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/goal",
+        values,
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      );
+      toast(response.data.message);
+      console.log(response);
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+      localStorage.setItem("showmodal", JSON.stringify(!shows));
+      setShows(false);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        toast.error(
+          `Request failed: ${
+            error.response ? error.response.data.message : error.message
+          }`
+        );
+      } else {
+        toast.error("An unexpected error occurred.");
+      }
+    }
   };
   const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
     useFormik({
@@ -40,7 +66,7 @@ const GoalsModal = () => {
 
   return (
     <Modal
-      show={shows}
+      show={false}
       onHide={() => setShows(false)}
       backdrop="static"
       keyboard={false}

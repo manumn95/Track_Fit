@@ -13,7 +13,7 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem("userToken");
+    const token = localStorage.getItem("track-fit-token");
     setIsLoggedIn(!!token)
   }, []);
 
