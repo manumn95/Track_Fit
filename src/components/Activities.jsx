@@ -51,6 +51,7 @@ const Activities = () => {
                 <i
                   className="bi bi-plus-circle-fill fs-4"
                   onClick={handleInc}
+                  style={{ cursor: "pointer" }}
                 ></i>
 
                 <CircularProgress
@@ -58,7 +59,11 @@ const Activities = () => {
                   value={progress}
                   className="border rounded-circle"
                 />
-                <i className="bi bi-dash-circle fs-4" onClick={handleDec}></i>
+                <i
+                  className="bi bi-dash-circle fs-4"
+                  onClick={handleDec}
+                  style={{ cursor: "pointer" }}
+                ></i>
                 <span className="fs-4 text-warning">={value}</span>
                 <i className="bi bi-cup-straw fs-4"></i>
               </div>
