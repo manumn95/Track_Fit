@@ -16,11 +16,11 @@ const App = () => {
     const token = localStorage.getItem("track-fit-token");
     setIsLoggedIn(!!token)
   }, []);
-
+ console.log(isLoggedIn)
   return (
    <BrowserRouter>
       <Routes>
-        {!isLoggedIn ? (
+        {isLoggedIn === false ? (
           <Route path="/" element={<Authentication />} />
         ) : (
           <>

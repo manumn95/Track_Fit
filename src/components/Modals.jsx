@@ -39,7 +39,6 @@ const Modals = ({ show, setShow, change }) => {
   const onSubmit = async (values, actions) => {
     try {
       const response = await userSignUp(values);
-      dispatch(loginSuccess(response));
       toast(response.data.message);
       await new Promise((resolve) => setTimeout(resolve, 3000));
       actions.resetForm();

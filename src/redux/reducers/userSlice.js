@@ -8,6 +8,7 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+   
     loginSuccess: (state, action) => {
       console.log(action.payload);
       state.currentUser = action.payload.username;
