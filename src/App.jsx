@@ -19,26 +19,26 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Routes>
-        {!isLoggedIn ? (
-          <Route path="/" element={<Authentication />} />
-        ) : (
-          <>
-            <Route path="/landing" element={<Landingpage />}>
-              <Route index element={<Template />} />
-              <Route path="home" element={<Dashboard />} />
-              <Route path="activities" element={<Activities />} />
-              <Route path="diet" element={<Diet />} />
-            </Route>
-            <Route path="/recipes" element={<Recipes />}>
+    <Routes>
+      {!isLoggedIn ? (
+        <Route path="/" element={<Authentication />} />
+      ) : (
+        <>
+          <Route path="/landing" element={<Landingpage />}>
+            <Route index element={<Template />} />
+            <Route path="home" element={<Dashboard />} />
+            <Route path="activities" element={<Activities />} />
+            <Route path="diet" element={<Diet />} />
+            <Route path="recipes" element={<Recipes />}>
               <Route index element={<Catagories />} />
               <Route path=":meals" element={<MealsCard />} />
             </Route>
-            <Route path="*" element={<Navigate to="/landing" />} />
-          </>
-        )}
-      </Routes>
-    </BrowserRouter>
+          </Route>
+          <Route path="*" element={<Navigate to="/landing" />} />
+        </>
+      )}
+    </Routes>
+  </BrowserRouter>
   );
 };
 

@@ -125,7 +125,7 @@ const Diet = () => {
               </button>
             </div>
             {!nutriton.length ? (
-              <p>No data found..try something else!</p>
+              <p>Loading....</p>
             ) : (
               <>
                 {nutriton.map((data, i) => {
