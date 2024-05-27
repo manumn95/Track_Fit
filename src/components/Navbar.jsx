@@ -1,17 +1,20 @@
 import logo from "../assets/images/logo-transparent.png";
 import "../../src/App.css";
 import { NavLink, Link, useNavigate } from "react-router-dom";
-import { useSelector,useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logout } from "../redux/reducers/userSlice";
-
+import { current } from "@reduxjs/toolkit";
 
 const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
- const {currentUser} = useSelector((state)=>state.user)
-  console.log(currentUser)
+  const currentUser = localStorage.getItem("username");
+
   const handleLogout = () => {
-   dispatch(logout())
+    dispatch(logout());
+    localStorage.setItem("showmodal", true);
+    localStorage.removeItem("userToken");
+    localStorage.removeItem("username");
     navigate("/");
     window.location.reload();
   };
@@ -54,7 +57,7 @@ const Navbar = () => {
             </ul>
             <div className="d-flex ms-auto gap-3">
               <h4 className="fs-3 fw-medium gradient rounded-circle p-2 text-white">
-                M
+                {currentUser.charAt(0).toUpperCase()}
               </h4>
               <h4 className=" fs-3 fw-medium gradient-text">{currentUser}</h4>
               <form onSubmit={handleLogout}>

@@ -41,11 +41,12 @@ const Modals = ({ show, setShow, change }) => {
       const response = await userSignUp(values);
       dispatch(loginSuccess(response));
       toast(response.data.message);
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+      actions.resetForm();
+      setSignup(false);
     } catch (error) {
       console.log(error);
     }
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    actions.resetForm();
   };
 
   const {
@@ -92,7 +93,7 @@ const Modals = ({ show, setShow, change }) => {
 
         toast.success(response.data.message);
         setTimeout(() => {
-          //navigate("/landing");
+          navigate("/landing");
           window.location.reload();
         }, 2000);
       } else {

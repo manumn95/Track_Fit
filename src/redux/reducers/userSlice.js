@@ -12,6 +12,7 @@ export const userSlice = createSlice({
       console.log(action.payload);
       state.currentUser = action.payload.username;
       localStorage.setItem("track-fit-token", action.payload.token);
+      localStorage.setItem("username",action.payload.username)
     },
     logout: (state) => {
       state.currentUser = null;
