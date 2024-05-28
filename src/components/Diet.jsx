@@ -5,10 +5,13 @@ import { useState } from "react";
 import axios from "axios";
 import healthy from "../assets/images/healthy.png";
 import MealPlannerModal from "./MealPlannerModal";
+import { useSelector } from "react-redux";
 
 const Diet = () => {
+  const dailyCalories = useSelector((state) => state.user.dailycalories);
+console.log(dailyCalories)
   const [name, setName] = useState("");
-  const[show,setShow]= useState(false)
+  const [show, setShow] = useState(false);
   const [nutriton, setNutrition] = useState([]);
   const navigate = useNavigate();
 
@@ -36,19 +39,23 @@ const Diet = () => {
 
   return (
     <>
-    <MealPlannerModal show={show} setShow={setShow}></MealPlannerModal>
+      <MealPlannerModal show={show} setShow={setShow}></MealPlannerModal>
       <div className="container">
         <div className="row mt-5">
           <div className="col-md-4">
             <div className="gradient text-center fw-bold rounded shadow d-flex gap-3">
               <img src={calories} style={{ width: "80px" }}></img>
               <p className=" d-flex justify-content-center align-items-center">
-                Eat Up to 1250 kcal
+                Eat Up to {dailyCalories} kcal
               </p>
             </div>
-            <button className=" mt-5 btn btn-success rounded shadow" onClick={()=>setShow(true)}>Add your meals</button>
+            <button
+              className=" mt-5 btn btn-success rounded shadow"
+              onClick={() => setShow(true)}
+            >
+              Add your meals
+            </button>
             <div className="row mt-2">
-             
               <div className="col-md-12">
                 <h4>Breakfast</h4>
                 <div className="p-4 border">

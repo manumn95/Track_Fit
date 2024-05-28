@@ -3,7 +3,7 @@ import "../../src/App.css";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../redux/reducers/userSlice";
-import { current } from "@reduxjs/toolkit";
+
 
 const Navbar = () => {
   const dispatch = useDispatch();
