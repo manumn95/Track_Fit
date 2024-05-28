@@ -30,12 +30,15 @@ const MealsCard = () => {
   return (
     <>
       {!meal ? (
-        <div>
-          <div className=" gradient-text fixed-top fw-bold">
-            <button className="btn border" onClick={() => history.back()}>
-              Back
-            </button>
-          </div>
+        <div className="container">
+           <div className="rounded d-inline ">
+                <button
+                  className="btn border shadow gradient "
+                  onClick={() => history.back()}
+                >
+                  <i className="bi bi-backspace  "></i>--back
+                </button>
+              </div>
           <h1 className="text-center gradient-text">
             Currently No Recpies Found....
             <p className="lead">we will update soon</p>
@@ -50,9 +53,12 @@ const MealsCard = () => {
             <ShimmerReceipe></ShimmerReceipe>
           ) : (
             <div className="container">
-              <div className=" gradient-text fixed-top">
-                <button className="btn border" onClick={() => history.back()}>
-                  Back
+              <div className="rounded d-inline ">
+                <button
+                  className="btn border shadow gradient "
+                  onClick={() => history.back()}
+                >
+                  <i className="bi bi-backspace  "></i>--back
                 </button>
               </div>
 
