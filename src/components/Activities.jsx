@@ -4,11 +4,13 @@ import Exercise from "./Exercise";
 import ExerciseModal from "./ExerciseModal";
 import CircularProgress from "@mui/material/CircularProgress";
 import { getWorkouts } from "../api";
+
 const Activities = () => {
   const [show, setShow] = useState(false);
   const [progress, setProgress] = useState(0);
   const [value, setValue] = useState(0);
   const [workoutdata, setWorkoutData] = useState([]);
+  const [counter, setCounter] = useState(0);
 
   const handleInc = () => {
     setProgress((preVal) => (preVal >= 100 ? 0 : preVal + 10));
@@ -35,6 +37,9 @@ const Activities = () => {
     const response = await getWorkouts(token);
     if (response) {
       setWorkoutData(response.data);
+      setTimeout(() => {
+        setCounter(counter + 1);
+      }, 3000);
     }
   };
 
@@ -42,7 +47,7 @@ const Activities = () => {
     workouts();
     localStorage.setItem("progress", progress);
     localStorage.setItem("answer", value);
-  }, [progress, value, show]);
+  }, [progress, value, show, counter]);
 
   return (
     <>
@@ -109,6 +114,9 @@ const Activities = () => {
                   sets={data.sets}
                   steps={data.steps}
                   caloriesBurned={data.caloriesBurned}
+                  id={data._id}
+                  setCounter
+                  counter
                 ></Exercise>
               </div>
             );

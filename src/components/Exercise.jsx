@@ -1,4 +1,7 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Exercise = ({
   exerciseName,
@@ -7,8 +10,26 @@ const Exercise = ({
   sets,
   steps,
   caloriesBurned,
+  id,
+  setCounter,
+  counter,
 }) => {
   const [formattedDate, setFormattedDate] = useState("");
+
+  const token = localStorage.getItem("track-fit-token");
+  const handleDelete = async () => {
+    console.log(id);
+    const response = await axios.delete(
+      `http://localhost:8080/api/deleteworkout?id=${id}`,
+      {
+        headers: { auth: token },
+      }
+    );
+
+    if (response) {
+      setCounter(counter - 1);
+    }
+  };
 
   useEffect(() => {
     const formatDate = (date) => {
@@ -24,6 +45,11 @@ const Exercise = ({
 
     setFormattedDate(formatDate(date));
   }, [date]);
+
+  const handleUpdate = (e) => {
+    console.log(e.target.value);
+  };
+
   return (
     <>
       <div className="card mt-3">
@@ -32,8 +58,22 @@ const Exercise = ({
             className="d-flex justify-content-end gap-3"
             style={{ cursor: "pointer" }}
           >
-            <i className="bi bi-pencil-fill"></i>
-            <i className="bi bi-trash-fill"></i>
+            <button
+              type="button"
+              className="btn"
+              value={id}
+              onClick={handleUpdate}
+            >
+              <i className="bi bi-pencil-fill"></i>
+            </button>
+            <button
+              type="button"
+              className="btn"
+              value={id}
+              onClick={handleDelete}
+            >
+              <i className="bi bi-trash-fill"></i>
+            </button>
           </div>
           <div>
             <h4 className="text-center ">{exerciseName}</h4>
