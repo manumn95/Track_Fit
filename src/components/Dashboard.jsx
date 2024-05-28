@@ -4,9 +4,10 @@ import { useState, useEffect } from "react";
 import image1 from "../assets/images/dashboard.png";
 import Pie from "./charts/Pie";
 import Line from "./charts/Line";
-import axios from "axios";
+
 import { useDispatch } from "react-redux";
 import { dailyCaloriesData } from "../redux/reducers/userSlice";
+import { getGoal } from "../api";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -24,9 +25,7 @@ const Dashboard = () => {
   const token = localStorage.getItem("track-fit-token");
   const getGaol = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/api/getGoals", {
-        headers: { auth: token },
-      });
+      const response = await getGoal(token);
       console.log(response);
       if (response) {
         let hr = 220 - response.data[0].age;

@@ -3,10 +3,12 @@ import image from "../assets/images/activity.png";
 import Exercise from "./Exercise";
 import ExerciseModal from "./ExerciseModal";
 import CircularProgress from "@mui/material/CircularProgress";
+import { getWorkouts } from "../api";
 const Activities = () => {
   const [show, setShow] = useState(false);
   const [progress, setProgress] = useState(0);
   const [value, setValue] = useState(0);
+  const [workoutdata, setWorkoutData] = useState([]);
 
   const handleInc = () => {
     setProgress((preVal) => (preVal >= 100 ? 0 : preVal + 10));
@@ -28,14 +30,19 @@ const Activities = () => {
     }
   }, []);
 
-  useEffect(
-    () => {
-      localStorage.setItem("progress", progress);
-      localStorage.setItem("answer", value);
-    },
-    [progress],
-    [value]
-  );
+  const token = localStorage.getItem("track-fit-token");
+  const workouts = async () => {
+    const response = await getWorkouts(token);
+    if (response) {
+      setWorkoutData(response.data);
+    }
+  };
+
+  useEffect(() => {
+    workouts();
+    localStorage.setItem("progress", progress);
+    localStorage.setItem("answer", value);
+  }, [progress, value, show]);
 
   return (
     <>
@@ -92,9 +99,20 @@ const Activities = () => {
               <i className="bi bi-radioactive"></i>
             </span>
           </h2>
-          <div className="col-md-4">
-            <Exercise></Exercise>
-          </div>
+          {workoutdata.map((data, i) => {
+            return (
+              <div key={i} className="col-md-4">
+                <Exercise
+                  exerciseName={data.exerciseName}
+                  date={data.date}
+                  duration={data.duration}
+                  sets={data.sets}
+                  steps={data.steps}
+                  caloriesBurned={data.caloriesBurned}
+                ></Exercise>
+              </div>
+            );
+          })}
         </div>
       </div>
       <ExerciseModal show={show} setShow={setShow}></ExerciseModal>

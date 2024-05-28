@@ -97,6 +97,7 @@ const ExerciseModal = ({ show, setShow }) => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.duration}
+                placeholder="in mins"
               ></input>
 
               {errors.duration && touched.duration && (

@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   currentUser: null,
   dailycalories: 0,
+
 };
 
 export const userSlice = createSlice({
@@ -22,6 +23,7 @@ export const userSlice = createSlice({
     dailyCaloriesData: (state, action) => {
       state.dailycalories = action.payload;
     },
+  
   },
 });
 
