@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../src/App.css";
 import axios from "axios";
+import { userGoal } from "../api";
 const GoalsModal = () => {
   let showmodals = JSON.parse(localStorage.getItem("showmodal"));
 
@@ -22,18 +23,9 @@ const GoalsModal = () => {
 
   const token = localStorage.getItem("track-fit-token");
 
-
   const onSubmit = async (values) => {
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/goal",
-        values,
-        {
-          headers: {
-            auth: token,
-          },
-        }
-      );
+      const response = await userGoal(values, token);
       toast(response.data.message);
       await new Promise((resolve) => setTimeout(resolve, 3000));
       localStorage.setItem("showmodal", JSON.stringify(!shows));

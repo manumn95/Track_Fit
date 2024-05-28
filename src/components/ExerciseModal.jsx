@@ -4,16 +4,26 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../src/App.css";
 import { basicSchema } from "../Formik/WorkoutSchema";
+import { userExercise } from "../api";
 const ExerciseModal = ({ show, setShow }) => {
   const handleClose = () => {
     setShow(false);
   };
 
   const onSubmit = async (values, actions) => {
-    toast("Exercise Added");
-    actions.resetForm();
-    await new Promise((resolve) => setTimeout(resolve, 6000));
-    setShow(false);
+    const token = localStorage.getItem("track-fit-token");
+    try {
+      const dbRes = await userExercise(values, token);
+      if (dbRes) {
+        toast(dbRes.data.message);
+        setTimeout(() => {
+          actions.resetForm();
+          setShow(false);
+        }, 2000);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
@@ -81,7 +91,7 @@ const ExerciseModal = ({ show, setShow }) => {
                 Duration
               </label>
               <input
-                type="number"
+                type="text"
                 className="form-control"
                 id="duration"
                 onChange={handleChange}
