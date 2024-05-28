@@ -22,3 +22,4 @@ export const getGoal = async (token) =>
   API.get("/getGoals", { headers: { auth: token } });
 export const getWorkouts = async (token) =>
   API.get("/workouts", { headers: { auth: token } });
+export const updateWorkout = async(token)=>API.update('/updateworkout',{headers:{auth:token}});
