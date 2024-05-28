@@ -27,7 +27,6 @@ const GoalsModal = () => {
     try {
       const response = await userGoal(values, token);
       toast(response.data.message);
-      await new Promise((resolve) => setTimeout(resolve, 3000));
       localStorage.setItem("showmodal", JSON.stringify(!shows));
       setShows(false);
     } catch (error) {
