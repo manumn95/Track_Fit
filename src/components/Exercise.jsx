@@ -1,5 +1,4 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
+import { deleteWorkout } from "../api";
 
 const Exercise = ({
   exerciseName,
@@ -11,41 +10,26 @@ const Exercise = ({
   id,
   setCounter,
   counter,
+  setUpdateId,
+  setDataById,
+  setShow,
+  setIsupdate,
 }) => {
-  const [formattedDate, setFormattedDate] = useState("");
-
   const token = localStorage.getItem("track-fit-token");
   const handleDelete = async () => {
-    console.log(id);
-    const response = await axios.delete(
-      `http://localhost:8080/api/deleteworkout?id=${id}`,
-      {
-        headers: { auth: token },
-      }
-    );
+    const response = await deleteWorkout(id, token);
 
     if (response) {
       setCounter(counter - 1);
     }
   };
 
-  useEffect(() => {
-    const formatDate = (date) => {
-      const dd = new Date(date);
-      const day = dd.getUTCDate();
-      const month = dd.getUTCMonth() + 1;
-      const year = dd.getUTCFullYear();
-      const formattedDay = day.toString().padStart(2, "0");
-      const formattedMonth = month.toString().padStart(2, "0");
-      const formattedYear = year.toString().slice(2);
-      return `${formattedDay}/${formattedMonth}/${formattedYear}`;
-    };
+  const handleUpdate = async () => {
+    setUpdateId(id);
 
-    setFormattedDate(formatDate(date));
-  }, [date]);
-
-  const handleUpdate = (e) => {
-    console.log(e.target.value);
+    setDataById({ exerciseName, date, duration, sets, steps, caloriesBurned });
+    setShow(true);
+    setIsupdate(true);
   };
 
   return (
@@ -77,7 +61,7 @@ const Exercise = ({
             <h4 className="text-center ">{exerciseName}</h4>
             <ul style={{ listStyle: "none" }} className="p-1 fs-5">
               <li className=" gradient">
-                Date:&nbsp;<span className="text-white ">{formattedDate}</span>
+                Date:&nbsp;<span className="text-white ">{date}</span>
               </li>
               <li className=" gradient">
                 Duration:&nbsp;<span className="text-white ">{duration}</span>
