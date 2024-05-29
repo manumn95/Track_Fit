@@ -11,6 +11,9 @@ const Activities = () => {
   const [value, setValue] = useState(0);
   const [workoutdata, setWorkoutData] = useState([]);
   const [counter, setCounter] = useState(0);
+  const [getUpdateId, setUpdateId] = useState("");
+  const [getDataById, setDataById] = useState({});
+  const [isupdate, setIsupdate] = useState(false);
 
   const handleInc = () => {
     setProgress((preVal) => (preVal >= 100 ? 0 : preVal + 10));
@@ -49,13 +52,15 @@ const Activities = () => {
     localStorage.setItem("answer", value);
   }, [progress, value, show, counter]);
 
+  const name = localStorage.getItem("name");
+
   return (
     <>
       <div className="container">
         <div className="row">
           <div className="col-md-3 text-center">
             <h2 className="fw-semibold" style={{ fontFamily: "cursive" }}>
-              Hello,<span className="fw-bold gradient-text">Manu!</span>
+              Hello,<span className="fw-bold gradient-text">{name}!</span>
             </h2>
             <p className="lead ">Track your workouts..</p>
             <div className="card shadow">
@@ -117,13 +122,24 @@ const Activities = () => {
                   id={data._id}
                   setCounter
                   counter
+                  setShow={setShow}
+                  setUpdateId={setUpdateId}
+                  setDataById={setDataById}
+                  setIsupdate={setIsupdate}
                 ></Exercise>
               </div>
             );
           })}
         </div>
       </div>
-      <ExerciseModal show={show} setShow={setShow}></ExerciseModal>
+      <ExerciseModal
+        show={show}
+        setShow={setShow}
+        exerciseData={getDataById}
+        getUpdateId={getUpdateId}
+        setIsupdate={setIsupdate}
+        isupdate={isupdate}
+      ></ExerciseModal>
     </>
   );
 };
