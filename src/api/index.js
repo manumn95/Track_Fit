@@ -22,4 +22,12 @@ export const getGoal = async (token) =>
   API.get("/getGoals", { headers: { auth: token } });
 export const getWorkouts = async (token) =>
   API.get("/workouts", { headers: { auth: token } });
-export const updateWorkout = async(token)=>API.update('/updateworkout',{headers:{auth:token}});
+
+export const deleteWorkout = async (id, token) =>
+  API.delete(`/deleteworkout?id=${id}`, { headers: { auth: token } });
+
+export const getWorkoutById = async (id, token) =>
+  API.get(`/getWorkoutById?id=${id}`, { headers: { auth: token } });
+
+export const updateWorkout = async (id, data, token) =>
+  API.put(`/updateworkout?id=${id}`, data, { headers: { auth: token } });
