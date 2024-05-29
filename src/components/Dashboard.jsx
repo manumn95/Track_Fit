@@ -78,14 +78,14 @@ const Dashboard = () => {
 
     return () => clearInterval(intervalId); // Cleanup interval on component unmount
   }, []);
-
+  const name = localStorage.getItem("name");
   return (
     <>
       <div className="container mt-3">
         <div className="row">
           <div className="col-md-6">
             <h2 className="fw-semibold" style={{ fontFamily: "cursive" }}>
-              {greeting},<span className="fw-bold gradient-text">Manu!</span>
+              {greeting},<span className="fw-bold gradient-text">{name}!</span>
             </h2>
             <p className="lead ">Track Your fitness here..</p>
           </div>
