@@ -4,7 +4,6 @@ import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../redux/reducers/userSlice";
 
-
 const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -12,7 +11,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     dispatch(logout());
-    localStorage.setItem("showmodal", true);
+    localStorage.setItem("showmodal", false);
     localStorage.removeItem("userToken");
     localStorage.removeItem("username");
     navigate("/");
