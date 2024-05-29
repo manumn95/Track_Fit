@@ -4,22 +4,76 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../src/App.css";
 import { basicSchema } from "../Formik/WorkoutSchema";
-import { userExercise } from "../api";
-const ExerciseModal = ({ show, setShow }) => {
+import { updateWorkout, userExercise } from "../api";
+import { useState, useEffect } from "react";
+const ExerciseModal = ({
+  show,
+  setShow,
+  exerciseData,
+  getUpdateId,
+  setIsupdate,
+  isupdate,
+}) => {
   const handleClose = () => {
     setShow(false);
+    setIsupdate(false);
+    setData("");
   };
+
+  const [data, setData] = useState({
+    exercisename: exerciseData.exerciseName || "",
+    date: exerciseData.date || "",
+    duration: exerciseData.duration || "",
+    sets: exerciseData.sets || "",
+    steps: exerciseData.steps || "",
+    calories: exerciseData.caloriesBurned || "",
+  });
+
+  useEffect(() => {
+    {
+      isupdate
+        ? setData({
+            exercisename: exerciseData.exerciseName || "",
+            date: exerciseData.date || "",
+            duration: exerciseData.duration || "",
+            sets: exerciseData.sets || "",
+            steps: exerciseData.steps || "",
+            calories: exerciseData.caloriesBurned || "",
+          })
+        : setData({
+            exercisename: "",
+            date: "",
+            duration: "",
+            sets: "",
+            steps: "",
+            calories: "",
+          });
+    }
+  }, [exerciseData]);
 
   const onSubmit = async (values, actions) => {
     const token = localStorage.getItem("track-fit-token");
     try {
-      const dbRes = await userExercise(values, token);
-      if (dbRes) {
-        toast(dbRes.data.message);
-        setTimeout(() => {
+      if (isupdate) {
+        const response = await updateWorkout(getUpdateId, values, token);
+        if (response) {
+          toast.success("Exercise updated successfully!");
           actions.resetForm();
-          setShow(false);
-        }, 2000);
+
+          setTimeout(() => {
+            handleClose();
+          }, 3000);
+        }
+      } else {
+        const response = await userExercise(values, token);
+        if (response) {
+          toast.success("Exercise Added successfully!");
+          actions.resetForm();
+
+          setTimeout(() => {
+            handleClose();
+          }, 3000);
+        }
       }
     } catch (error) {
       console.log(error);
@@ -28,14 +82,8 @@ const ExerciseModal = ({ show, setShow }) => {
 
   const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
     useFormik({
-      initialValues: {
-        name: "",
-        date: "",
-        duration: "",
-        sets: "",
-        steps: "",
-        calories: "",
-      },
+      initialValues: data,
+      enableReinitialize: true,
       validationSchema: basicSchema,
       onSubmit,
     });
@@ -49,24 +97,28 @@ const ExerciseModal = ({ show, setShow }) => {
         backdrop="static"
         keyboard={false}
       >
-        <Modal.Header closeButton></Modal.Header>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            {isupdate ? "Update Exercise" : "Add Exercise"}
+          </Modal.Title>
+        </Modal.Header>
         <Modal.Body>
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
-              <label htmlFor="exampleInputEmail1" className="form-label">
+              <label htmlFor="exercisename" className="form-label">
                 Exercise Name
               </label>
               <input
                 type="text"
                 className="form-control"
-                id="name"
+                id="exercisename"
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.name}
+                value={values.exercisename}
               ></input>
 
-              {errors.name && touched.name && (
-                <p className="text-danger">{errors.name}</p>
+              {errors.exercisename && touched.exercisename && (
+                <p className="text-danger">{errors.exercisename}</p>
               )}
             </div>
             <div className="mb-3">
@@ -157,11 +209,11 @@ const ExerciseModal = ({ show, setShow }) => {
             </div>
 
             <button type="submit" className="btn gradient text-white border">
-              Add Exercsie
+              {isupdate ? "Update" : "Add"}
             </button>
-            <ToastContainer position="top-center" />
           </form>
         </Modal.Body>
+        <ToastContainer position="top-center" />
       </Modal>
     </>
   );
