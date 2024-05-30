@@ -11,7 +11,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     dispatch(logout());
-    localStorage.setItem("showmodal", false);
+    localStorage.removeItem("showmodal");
     localStorage.removeItem("userToken");
     localStorage.removeItem("username");
     navigate("/");
