@@ -60,4 +60,4 @@ Make sure you have the following installed:
    git clone https://github.com/manumn95/Track-Fit-Backend.git
    ```
 
-## Live:''
+## Live:'https://trackfit-fitness-app.netlify.app'
