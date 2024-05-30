@@ -91,9 +91,8 @@ const Modals = ({ show, setShow, change }) => {
         });
 
         toast.success(response.data.message);
-
+        navigate("/landing");
         setTimeout(() => {
-          navigate("/landing");
           window.location.reload();
         }, 2000);
       } else {
