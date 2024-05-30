@@ -93,11 +93,11 @@ const Modals = ({ show, setShow, change }) => {
         toast.success(response.data.message);
 
         window.location.reload();
-        navigate("/landing");
-        // setTimeout(() => {
-        //   navigate("/landing");
-        //   window.location.reload();
-        // }, 2000);
+
+        setTimeout(() => {
+          navigate("/landing");
+          window.location.reload();
+        }, 2000);
       } else {
         toast.error("Login failed. Please try again.");
       }
