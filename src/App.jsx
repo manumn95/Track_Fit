@@ -14,11 +14,11 @@ const App = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("track-fit-token");
-    setIsLoggedIn(!!token)
+    setIsLoggedIn(!!token);
   }, []);
- console.log(isLoggedIn)
+
   return (
-   <BrowserRouter>
+    <BrowserRouter>
       <Routes>
         {isLoggedIn === false ? (
           <Route path="/" element={<Authentication />} />
