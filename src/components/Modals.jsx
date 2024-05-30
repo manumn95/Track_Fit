@@ -92,6 +92,7 @@ const Modals = ({ show, setShow, change }) => {
 
         toast.success(response.data.message);
         navigate("/landing");
+        window.location.reload();
         setTimeout(() => {
           window.location.reload();
         }, 2000);
