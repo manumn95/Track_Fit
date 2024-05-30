@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:8080/api",
+  baseURL: "https://trackfit-app-backend.onrender.com/api",
 });
 
 export const userSignUp = async (data) => API.post("/signUp", data);
