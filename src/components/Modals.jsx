@@ -83,6 +83,7 @@ const Modals = ({ show, setShow, change }) => {
     e.preventDefault();
     try {
       const response = await userLogIn(logindata);
+      console.log(response);
       if (response?.data?.token) {
         dispatch(loginSuccess(response.data));
         setloginData({
