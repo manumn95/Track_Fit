@@ -10,6 +10,29 @@ The Fitness App is a comprehensive application designed to help users track thei
 - **Workouts:** Log workouts and view detailed statistics.
 - **Charts:** Visual representation of fitness data using pie and line charts.
 
+## Screenshots
+
+**Authentication-page**
+![alt text](image.png)
+
+![alt text](image-1.png) ![alt text](image-2.png)
+
+**Landing-page**
+![alt text](image-3.png)
+
+**Dashboard**
+![alt text](image-4.png)
+
+**Activities**
+![alt text](image-5.png)
+
+**Diet**
+![alt text](image-6.png)
+
+**Find-Recipes**
+![alt text](image-7.png)
+![alt text](image-8.png)
+
 ## Technologies Used
 
 - **Frontend:** React, Redux, Bootstrap
@@ -32,30 +55,9 @@ Make sure you have the following installed:
    ```bash
    git clone https://github.com/manumn95/Track_Fit.git
    ```
+
    ```bash
    git clone https://github.com/manumn95/Track-Fit-Backend.git
    ```
+
 ## Live:''
-
-## Screenshots
-
-**Authentication-page**
-![alt text](image.png)
-
-![alt text](image-1.png)  ![alt text](image-2.png)
-
-**Landing-page**
-![alt text](image-3.png)
-
-**Dashboard**
-![alt text](image-4.png)
-
-**Activities**
-![alt text](image-5.png)
-
-**Diet**
-![alt text](image-6.png)
-
-**Find-Recipes**
-![alt text](image-7.png)
-![alt text](image-8.png)
