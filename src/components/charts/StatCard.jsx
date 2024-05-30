@@ -7,7 +7,7 @@ const StatCard = ({ title, value, icon }) => {
           <div className="card-body gradient d-flex gap-2">
             <i className={icon}></i>
             <div>
-              <h5 className="card-title">{title}</h5>
+              <h6 className="card-title">{title}</h6>
               <h3>{value}</h3>
             </div>
           </div>
