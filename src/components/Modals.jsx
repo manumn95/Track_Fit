@@ -95,6 +95,7 @@ const Modals = ({ show, setShow, change }) => {
         window.location.reload();
         setTimeout(() => {
           navigate("/landing");
+          localStorage.setItem("showmodal", true);
           window.location.reload();
         }, 2000);
       } else {
