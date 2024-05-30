@@ -69,7 +69,6 @@ const ExerciseModal = ({
         if (response) {
           toast.success("Exercise Added successfully!");
           actions.resetForm();
-
           setTimeout(() => {
             handleClose();
           }, 3000);

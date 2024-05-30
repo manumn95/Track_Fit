@@ -1,15 +1,18 @@
 import { PieChart } from "@mui/x-charts/PieChart";
-const Pie = () => {
+
+const Pie = ({ workoutdata }) => {
+  const pieData = workoutdata.map((data, i) => ({
+    id: i,
+    value: data.caloriesBurned,
+    label: data.exerciseName,
+  }));
+
   return (
     <>
       <PieChart
         series={[
           {
-            data: [
-              { id: 0, value: 10, label: "Walking" },
-              { id: 1, value: 15, label: "Running" },
-              { id: 2, value: 20, label: "Squats" },
-            ],
+            data: pieData,
             innerRadius: 30,
             outerRadius: 100,
             paddingAngle: 5,
@@ -18,7 +21,6 @@ const Pie = () => {
         ]}
         max-width={400}
         height={200}
-        
       />
     </>
   );

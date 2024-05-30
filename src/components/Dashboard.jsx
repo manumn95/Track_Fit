@@ -7,12 +7,12 @@ import Line from "./charts/Line";
 
 import { useDispatch } from "react-redux";
 import { dailyCaloriesData } from "../redux/reducers/userSlice";
-import { getGoal } from "../api";
+import { getGoal, getWorkouts } from "../api";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  const stepsData = [3000, 5000, 7000, 8000, 12000, 14000, 10000];
-  const caloriesData = [200, 300, 400, 500, 600, 700, 800];
+  const [totalSteps, setTotalSteps] = useState("");
+  const [totalCaloriesData, setTotalCaloriesData] = useState("");
 
   const [greeting, setGreeting] = useState("");
   const [goal, setGoal] = useState("your Goal");
@@ -26,7 +26,7 @@ const Dashboard = () => {
   const getGaol = async () => {
     try {
       const response = await getGoal(token);
-      console.log(response);
+
       if (response) {
         let hr = 220 - response.data[0].age;
         setGoal(response.data[0].goal);
@@ -60,8 +60,27 @@ const Dashboard = () => {
     }
   };
 
+  const [workoutdata, setWorkoutData] = useState([]);
+  const workouts = async () => {
+    const response = await getWorkouts(token);
+    if (response.data) {
+      setWorkoutData(response.data);
+      const data = response.data;
+      const totalCaloriesBurned = data.reduce((total, workout) => {
+        return total + workout.caloriesBurned;
+      }, 0);
+      setTotalCaloriesData(totalCaloriesBurned);
+      const steps = data.reduce((total, workout) => {
+        return total + workout.steps;
+      }, 0);
+      setTotalSteps(steps);
+    }
+  };
+
   useEffect(() => {
     getGaol();
+    workouts();
+
     const updateGreeting = () => {
       const currentHour = new Date().getHours();
       if (currentHour < 12) {
@@ -74,9 +93,9 @@ const Dashboard = () => {
     };
 
     updateGreeting();
-    const intervalId = setInterval(updateGreeting, 60000); // Update every minute
+    const intervalId = setInterval(updateGreeting, 60000);
 
-    return () => clearInterval(intervalId); // Cleanup interval on component unmount
+    return () => clearInterval(intervalId);
   }, []);
   const name = localStorage.getItem("name");
   return (
@@ -103,12 +122,12 @@ const Dashboard = () => {
               />
               <StatCard
                 title="Steps Taken"
-                value={stepsData.reduce((a, b) => a + b, 0)}
+                value={`${totalSteps} steps`}
                 icon="bi bi-person-walking fs-2"
               />
               <StatCard
                 title="Calories Burned"
-                value={caloriesData.reduce((a, b) => a + b, 0)}
+                value={`${totalCaloriesData} kcal`}
                 icon="bi bi-fire fs-2"
               />
             </div>
@@ -120,10 +139,10 @@ const Dashboard = () => {
         </div>
         <div className="row mt-4 ">
           <div className="col-md-4">
-            <Pie></Pie>
+            <Pie workoutdata={workoutdata}></Pie>
           </div>
           <div className="col-md-4 ">
-            <Line></Line>
+            <Line workoutdata={workoutdata}></Line>
           </div>
           <div className="col-md-4">
             <h3 className="text-center fw-bold">Your Goal</h3>

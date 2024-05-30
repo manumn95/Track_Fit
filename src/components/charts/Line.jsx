@@ -1,15 +1,30 @@
 import { LineChart } from "@mui/x-charts/LineChart";
-const Line = () => {
+
+const Line = ({ workoutdata }) => {
+  const xData = workoutdata.map((data) => data.duration);
+  const yData = workoutdata.map((data) => data.steps);
+
   return (
     <>
       <LineChart
-        xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
-        series={[
+        xAxis={[
           {
-            data: [2, 5.5, 2, 8.5, 1.5, 5],
+            data: xData,
+            label: "Duration(min)", // Set the x-axis label
           },
         ]}
-        max-width={400}
+        yAxis={[
+          {
+            label: "Steps", // Set the y-axis label
+          },
+        ]}
+        series={[
+          {
+            data: yData,
+            label: "Steps Over Time", // Optionally set a series label
+          },
+        ]}
+        maxWidth={400}
         height={250}
       />
     </>
