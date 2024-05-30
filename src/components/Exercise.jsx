@@ -18,7 +18,6 @@ const Exercise = ({
   const token = localStorage.getItem("track-fit-token");
   const handleDelete = async () => {
     const response = await deleteWorkout(id, token);
-
     if (response) {
       setCounter(counter - 1);
     }

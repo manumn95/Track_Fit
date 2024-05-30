@@ -31,3 +31,24 @@ export const getWorkoutById = async (id, token) =>
 
 export const updateWorkout = async (id, data, token) =>
   API.put(`/updateworkout?id=${id}`, data, { headers: { auth: token } });
+
+export const getBreakfast = async (token) =>
+  API.get("/getBreakfast", { headers: { auth: token } });
+
+export const getLunch = async (token) =>
+  API.get("/getLunch", { headers: { auth: token } });
+
+export const getSnakes = async (token) =>
+  API.get("/getSnakes", { headers: { auth: token } });
+
+export const getDinner = async (token) =>
+  API.get("/getDinner", { headers: { auth: token } });
+
+export const deleteBreakfast = async (id, token) =>
+  API.delete(`/deleteBreakfast?id=${id}`, { headers: { auth: token } });
+export const deleteLunch = async (id, token) =>
+  API.delete(`/deleteLunch?id=${id}`, { headers: { auth: token } });
+export const deleteSnakes = async (id, token) =>
+  API.delete(`/deleteSnakes?id=${id}`, { headers: { auth: token } });
+export const deleteDinner = async (id, token) =>
+  API.delete(`/deleteDinner?id=${id}`, { headers: { auth: token } });
