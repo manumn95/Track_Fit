@@ -83,7 +83,6 @@ const Modals = ({ show, setShow, change }) => {
     e.preventDefault();
     try {
       const response = await userLogIn(logindata);
-      console.log(response);
       if (response?.data?.token) {
         dispatch(loginSuccess(response.data));
         setloginData({
@@ -100,7 +99,11 @@ const Modals = ({ show, setShow, change }) => {
           window.location.reload();
         }, 2000);
       } else {
-        toast.error(response.data.message);
+        setloginData({
+          username: "",
+          password: "",
+        });
+        toast.error(response.data);
       }
     } catch (error) {
       console.log(error);

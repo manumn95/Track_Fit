@@ -1,7 +1,7 @@
 import axios from "axios";
-
+//https://trackfit-app-backend.onrender.com
 const API = axios.create({
-  baseURL: "https://trackfit-app-backend.onrender.com/api",
+  baseURL: "http://localhost:9090/api",
 });
 
 export const userSignUp = async (data) => API.post("/signUp", data);
@@ -52,3 +52,6 @@ export const deleteSnakes = async (id, token) =>
   API.delete(`/deleteSnakes?id=${id}`, { headers: { auth: token } });
 export const deleteDinner = async (id, token) =>
   API.delete(`/deleteDinner?id=${id}`, { headers: { auth: token } });
+
+export const updateGoal = async (values, token) =>
+  API.put("/updateGoal", values, { headers: { auth: token } });

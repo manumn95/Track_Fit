@@ -6,12 +6,12 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../src/App.css";
 import axios from "axios";
-import { userGoal } from "../api";
+import { updateGoal, userGoal } from "../api";
 const GoalsModal = () => {
   let showmodals = JSON.parse(localStorage.getItem("showmodal"));
 
   const [shows, setShows] = useState();
-
+  const [goalId, setGoalId] = useState();
   useEffect(() => {
     // Show the modal when the component mounts
     if (showmodals === true || showmodals === null) {
@@ -19,16 +19,25 @@ const GoalsModal = () => {
     } else {
       setShows(false);
     }
+    setGoalId(localStorage.getItem("goalId"));
   }, []);
-
   const token = localStorage.getItem("track-fit-token");
 
   const onSubmit = async (values) => {
     try {
-      const response = await userGoal(values, token);
-      toast(response.data.message);
-      localStorage.setItem("showmodal", JSON.stringify(!shows));
-      setShows(false);
+      if (!goalId) {
+        const response = await userGoal(values, token);
+        toast(response.data.message);
+        localStorage.setItem("showmodal", JSON.stringify(!shows));
+        setShows(false);
+        localStorage.setItem("goalId", response.data.user);
+      } else {
+        const response = await updateGoal(values, token);
+        toast(response.data);
+        localStorage.setItem("showmodal", JSON.stringify(!shows));
+        setShows(false);
+        localStorage.setItem("goalId", response.data.user);
+      }
     } catch (error) {
       if (axios.isAxiosError(error)) {
         toast.error(
