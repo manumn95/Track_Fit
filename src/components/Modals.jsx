@@ -135,6 +135,7 @@ const Modals = ({ show, setShow, change }) => {
                   id="exampleInputEmail1"
                   aria-describedby="emailHelp"
                   name="username"
+                  required
                   value={logindata.username}
                   onChange={handleDatachange}
                 ></input>
@@ -148,6 +149,7 @@ const Modals = ({ show, setShow, change }) => {
                   className="form-control"
                   id="exampleInputPassword1"
                   name="password"
+                  required
                   value={logindata.password}
                   onChange={handleDatachange}
                 ></input>
