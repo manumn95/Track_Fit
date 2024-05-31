@@ -124,7 +124,7 @@ const Modals = ({ show, setShow, change }) => {
             <div className="d-flex justify-content-center">
               <img className="logo" src={logo}></img>
             </div>
-            <form>
+            <form onSubmit={handleLogin}>
               <div className="mb-3">
                 <label htmlFor="exampleInputEmail1" className="form-label">
                   Email address
@@ -156,11 +156,7 @@ const Modals = ({ show, setShow, change }) => {
               </div>
 
               <div className="d-flex justify-content-center">
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                  onClick={handleLogin}
-                >
+                <button type="submit" className="btn btn-primary">
                   Login
                 </button>
               </div>
