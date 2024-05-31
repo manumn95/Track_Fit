@@ -11,7 +11,7 @@ const GoalsModal = () => {
   let showmodals = JSON.parse(localStorage.getItem("showmodal"));
 
   const [shows, setShows] = useState();
-  const [goalId, setGoalId] = useState();
+  const [goalId, setGoalId] = useState(null);
   useEffect(() => {
     // Show the modal when the component mounts
     if (showmodals === true || showmodals === null) {
@@ -25,7 +25,7 @@ const GoalsModal = () => {
   console.log(goalId);
   const onSubmit = async (values) => {
     try {
-      if (!goalId) {
+      if (!goalId || goalId === null) {
         const response = await userGoal(values, token);
         toast(response.data.message);
         localStorage.setItem("showmodal", JSON.stringify(!shows));
