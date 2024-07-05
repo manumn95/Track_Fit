@@ -25,7 +25,7 @@ const GoalsModal = () => {
   console.log(goalId);
   const onSubmit = async (values) => {
     try {
-      if (!goalId || goalId === null) {
+      if ( goalId === null) {
         const response = await userGoal(values, token);
         toast(response.data.message);
         localStorage.setItem("showmodal", JSON.stringify(!shows));
