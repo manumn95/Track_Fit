@@ -22,10 +22,9 @@ const GoalsModal = () => {
     setGoalId(localStorage.getItem("goalId"));
   }, []);
   const token = localStorage.getItem("track-fit-token");
-  console.log(goalId);
   const onSubmit = async (values) => {
     try {
-      if ( goalId === null) {
+      if (goalId !== null) {
         const response = await userGoal(values, token);
         toast(response.data.message);
         localStorage.setItem("showmodal", JSON.stringify(!shows));
